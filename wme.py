@@ -1,16 +1,17 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-import argparse
-import pickle
-import dask
+
 import os
+import argparse
+
+import dask
 from dask.diagnostics import ProgressBar
 
 import pyemd
 import numpy as np
-from scipy.spatial.distance import cdist
 from numpy import linalg as LA
+from scipy.spatial.distance import cdist
 
 import gensim.corpora as corpora
 import gensim.downloader as api

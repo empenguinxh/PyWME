@@ -1,3 +1,7 @@
+tmp
+develop.ipynb
+data/twitter_docs_wme_exp_0.npy
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]

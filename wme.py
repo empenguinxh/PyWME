@@ -76,7 +76,7 @@ def compute_wme(corpus_fp, R, D_min, D_max, gamma, nuw_max, wv_name, exp_id, no_
     wv_size = w2v_data.vector_size
     
     # ---------- prepare the corpus ----------
-    corpus_name = corpus_fp.split('/')[-1].split('.')[0]
+    corpus_name = os.path.splitext(os.path.split(corpus_fp)[1])[0]
     print(f"... loading corpus: {corpus_fp} ...")
     with open(corpus_fp, 'r') as f:
         corpus = [line.split() for line in f]
@@ -129,7 +129,9 @@ def compute_wme(corpus_fp, R, D_min, D_max, gamma, nuw_max, wv_name, exp_id, no_
             # `uww` means the weight of `uw` in the current doc
             if dictionary[uw] in w2v_data:
                 # `dictionary[uw]` gives the token string for `uw`
-                # `w2v_model.wv` is a dictionary, with keys being token strings
+                # `w2v_data` can be regarded as a dictionary, 
+                # with keys being token strings
+                # and values being word embedding vectors
                 doc_wwv[nuw] = uww
                 doc_wev[nuw, :] = w2v_data[dictionary[uw]]
                 nuw += 1
@@ -172,7 +174,7 @@ def compute_wme(corpus_fp, R, D_min, D_max, gamma, nuw_max, wv_name, exp_id, no_
         print(f"... load cache for all docs ...")
     elif len(skipped_l) > 0:
         print(f"... load cache for docs {skipped_l} ....")
-    
+
     with ProgressBar():
         task_l = dask.compute(task_l, num_workers=num_workers, scheduler='processes')[0]
     for i, wme_vec in enumerate(task_l):

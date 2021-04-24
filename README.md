@@ -28,7 +28,7 @@ which is equivalent with
 python wme.py ./data/twitter_docs.txt --gamma 1.0 --R 128 --D_max 6 --D_min 1 --nuw_max 500 --wv_name word2vec-google-news-300 --exp_id exp_0
 ```
 
-Check `python wme.py --help` for the meaning of the options.
+Check `python wme.py --help` for the meaning of the options. 
 
 Suppose that `./data/twitter_docs.txt` is used as the corpus file and the `--exp_id` option is set to `exp_0`. Then the resulted WME document vectors will be saved as `./data/twitter_docs_wme_exp_0.npy`, which is a numpy array of which the i-th row stores the WME vector of the i-th document in the corpus file. It can be loaded by using the following commands.
 

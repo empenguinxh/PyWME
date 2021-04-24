@@ -168,10 +168,11 @@ def compute_wme(corpus_fp, R, D_min, D_max, gamma, nuw_max, wv_name, exp_id, no_
                     doc_l_wwv_rand, doc_l_wev_rand, 
                     gamma, cache_fp)
             )
-    if len(skipped_l) > 0:
-        print(f"... load cache for docs {skipped_l} ....")
-    elif len(skipped_l) == n_doc:
+    if len(skipped_l) == n_doc:
         print(f"... load cache for all docs ...")
+    elif len(skipped_l) > 0:
+        print(f"... load cache for docs {skipped_l} ....")
+    
     with ProgressBar():
         task_l = dask.compute(task_l, num_workers=num_workers, scheduler='processes')[0]
     for i, wme_vec in enumerate(task_l):
